@@ -1,0 +1,3 @@
+bug_id,title,status,severity,priority,reported_date,owner,fix_version,verification_date,notes,links
+BUG-001,"Example: Search returns 500",New,Critical,P0,{{date}},,,,"Capture environment + evidence",""
+

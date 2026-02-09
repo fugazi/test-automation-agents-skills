@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 
+    ╔═══════════════════════════════════════════════════════════════════╗
+    ║  Accessibility Testing with Selenium WebDriver & Axe-Core         ║
+    ║  Template for WCAG 2.1 AA compliance testing                      ║
+    ╚═══════════════════════════════════════════════════════════════════╝
+    -->
+
+    <groupId>com.example</groupId>
+    <artifactId>accessibility-tests</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>Accessibility Tests</name>
+    <description>Automated accessibility testing using Selenium and Axe-Core</description>
+
+    <properties>
+        <!-- Java Configuration -->
+        <java.version>21</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Core Dependencies -->
+        <selenium.version>4.27.0</selenium.version>
+        <axe-core.version>4.10.0</axe-core.version>
+        <junit.version>5.11.3</junit.version>
+        <assertj.version>3.26.3</assertj.version>
+
+        <!-- Reporting -->
+        <allure.version>2.29.0</allure.version>
+        
+        <!-- Utilities -->
+        <lombok.version>1.18.36</lombok.version>
+        <slf4j.version>2.0.16</slf4j.version>
+        <logback.version>1.5.12</logback.version>
+        <jackson.version>2.18.1</jackson.version>
+
+        <!-- Plugins -->
+        <maven-surefire.version>3.5.2</maven-surefire.version>
+        <maven-compiler.version>3.13.0</maven-compiler.version>
+        <aspectj.version>1.9.22.1</aspectj.version>
+    </properties>
+
+    <dependencies>
+        <!-- ========================================== -->
+        <!-- Selenium WebDriver                        -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- Axe-Core Accessibility Engine             -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>com.deque.html.axe-core</groupId>
+            <artifactId>selenium</artifactId>
+            <version>${axe-core.version}</version>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- Testing Framework (JUnit 5)               -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- Assertions (AssertJ)                      -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- Reporting (Allure)                        -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit5</artifactId>
+            <version>${allure.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- Utilities                                 -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- ========================================== -->
+        <!-- JSON Processing (for reports)             -->
+        <!-- ========================================== -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire Plugin (Test Execution) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire.version}</version>
+                <configuration>
+                    <!-- Allure Agent for @Step annotations -->
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <systemPropertyVariables>
+                        <!-- Allure results directory -->
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <!-- A11y results directory -->
+                        <a11y.results.directory>${project.build.directory}/a11y-results</a11y.results.directory>
+                    </systemPropertyVariables>
+                    <!-- Include a11y tagged tests -->
+                    <groups>${test.groups}</groups>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <!-- Allure Report Plugin -->
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.14.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!-- ============================================== -->
+    <!-- Execution Profiles                            -->
+    <!-- ============================================== -->
+    <profiles>
+        <!-- Accessibility tests only -->
+        <profile>
+            <id>a11y</id>
+            <properties>
+                <test.groups>a11y</test.groups>
+            </properties>
+        </profile>
+
+        <!-- CI mode (headless + strict) -->
+        <profile>
+            <id>ci</id>
+            <properties>
+                <headless>true</headless>
+                <test.groups>a11y</test.groups>
+            </properties>
+        </profile>
+
+        <!-- Chrome browser -->
+        <profile>
+            <id>chrome</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <browser>chrome</browser>
+            </properties>
+        </profile>
+
+        <!-- Firefox browser -->
+        <profile>
+            <id>firefox</id>
+            <properties>
+                <browser>firefox</browser>
+            </properties>
+        </profile>
+
+        <!-- Edge browser -->
+        <profile>
+            <id>edge</id>
+            <properties>
+                <browser>edge</browser>
+            </properties>
+        </profile>
+
+        <!-- Headless mode -->
+        <profile>
+            <id>headless</id>
+            <properties>
+                <headless>true</headless>
+            </properties>
+        </profile>
+    </profiles>
+</project>

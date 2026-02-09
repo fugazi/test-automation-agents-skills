@@ -1,0 +1,3 @@
+requirement_id,requirement_desc,test_condition_id,test_case_id,automation_test_file,automation_test_name,status,notes
+REQ-SEARCH-001,"Search returns matching products",COND-SEARCH-001,TC-001,tests/search.spec.ts,"TC-001 @smoke search returns results",Planned,"Link to story/AC and defect history"
+
