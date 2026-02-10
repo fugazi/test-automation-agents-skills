@@ -1,6 +1,8 @@
 # AGENTS.md
 
-This is a GitHub Copilot AI Agents & Skills repository for test automation. It contains custom agent definitions and skill instructions that enhance GitHub Copilot with specialized testing capabilities.
+This is an AI Agents & Skills repository for test automation.
+
+The content is **tool-agnostic** (usable with GitHub Copilot, Claude, Cursor, OpenCode, Windsurf, etc.), while the file formats and folder conventions in this repo are primarily optimized for **GitHub Copilot customizations**.
 
 ## Repository Structure
 

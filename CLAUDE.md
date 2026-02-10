@@ -2,9 +2,15 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+The repository content is intended to be **tool-agnostic** (Copilot, Claude, Cursor, OpenCode, Windsurf, etc.). This file is simply the Claude-specific entrypoint for the same agents/instructions/skills concepts.
+
 ## Repository Purpose
 
-This is a **GitHub Copilot AI Agents & Skills repository** for test automation. It contains custom agent definitions and skill instructions that enhance GitHub Copilot with specialized testing capabilities for:
+This is an **AI Agents & Skills repository** for test automation.
+
+The content is **tool-agnostic** (Copilot, Claude, Cursor, OpenCode, Windsurf, etc.), while the file formats and folder conventions in this repo are primarily optimized for **GitHub Copilot customizations**.
+
+It contains custom agent definitions and skill instructions for:
 
 - **Playwright** (TypeScript) - End-to-end browser automation
 - **Selenium WebDriver** (Java 21+) - UI testing with JUnit 5 and AssertJ
@@ -12,7 +18,7 @@ This is a **GitHub Copilot AI Agents & Skills repository** for test automation. 
 - **Manual QA** - ISTQB-based testing practices
 - **Test Planning** - Test strategy and documentation
 
-**Important:** This repository has **no build system**. Files are Markdown with YAML frontmatter, consumed by GitHub Copilot. No build, lint, or test commands are required.
+**Important:** This repository has **no build system**. Files are Markdown with YAML frontmatter. No build, lint, or test commands are required.
 
 ## Repository Architecture
 

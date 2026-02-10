@@ -1,0 +1,53 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# VS Code
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# JetBrains
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Node
+node_modules/
+
+# Playwright artifacts (commonly produced in downstream projects)
+playwright-report/
+test-results/
+blob-report/
+
+# General build outputs
+coverage/
+dist/
+build/
+.out/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Misc
+*.tmp
+*.swp
