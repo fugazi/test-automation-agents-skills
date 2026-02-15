@@ -90,6 +90,33 @@ If you are using Claude/Cursor/OpenCode/Windsurf (or another assistant), verific
 
 Add this repo as a submodule, then **copy/sync** assets into `.github/*` as part of your internal workflow.
 
+### Option C — Install skills via skills.sh
+
+You can install skills directly from this repository using **skills.sh**:
+
+- Browse the skills list for this repo: `https://skills.sh/?q=fugazi/test-automation-skills-agents`
+
+Copy/paste any of these commands:
+
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill playwright-e2e-testing
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill a11y-playwright-testing
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill webapp-playwright-testing
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill qa-test-planner
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill webapp-selenium-testing
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill qa-manual-istqb
+```
+
 ---
 
 > Note: Copilot’s discovery typically looks at canonical locations like `.github/agents` and `.github/skills`. Keeping this repo as a submodule is fine, but you will generally still want a sync step into `.github/*`.
