@@ -116,6 +116,12 @@ npx skills add https://github.com/fugazi/test-automation-skills-agents --skill w
 ```bash
 npx skills add https://github.com/fugazi/test-automation-skills-agents --skill qa-manual-istqb
 ```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill accessibility-selenium-testing
+```
+```bash
+npx skills add https://github.com/fugazi/test-automation-skills-agents --skill playwright-regression-testing
+```
 
 ---
 
@@ -284,6 +290,7 @@ Typical triggers:
 
 - “Write Playwright E2E tests with POM and stable locators” → `playwright-e2e-testing`
 - “Run axe-core checks, keyboard navigation, WCAG 2.1 AA” → `a11y-playwright-testing` or `accessibility-selenium-testing`
+- “Plan, organize, or optimize regression test suites” → `playwright-regression-testing`
 - “Generate ISTQB-aligned artifacts: test plan / bug report / traceability” → `qa-manual-istqb`
 - “Browser-based exploration and debugging” → `webapp-playwright-testing`
 
@@ -296,6 +303,7 @@ Typical triggers:
 | `a11y-playwright-testing` | WCAG 2.1 AA checks using Playwright + axe-core | “Add automated a11y scans for auth pages and keyboard nav tests.” |
 | `webapp-selenium-testing` | Selenium Java automation patterns | “Create Selenium POM + JUnit 5 tests for login and profile update.” |
 | `accessibility-selenium-testing` | A11y scanning with Selenium + axe-core | “Scan key pages for WCAG issues and generate an Allure-friendly report.” |
+| `playwright-regression-testing` | Regression strategy + test selection + CI/CD optimization | “Organize tests into tiers (smoke, selective, full) and set up GitHub Actions pipeline.” |
 | `qa-manual-istqb` | ISTQB-aligned artifacts + test design techniques | “Create a risk-based regression suite and a traceability matrix.” |
 | `qa-test-planner` | Test plans + test cases + bug reports + Playwright artifacts | “Use the skill qa-test-planner to create a test plan for payments.” |
 
@@ -339,7 +347,19 @@ If a skill still does not activate automatically:
 2. Add a11y checks to critical flows (auth, checkout, forms, modals).
 3. Fail CI on WCAG 2.1 AA violations (with triage exceptions documented).
 
-### Workflow 4 — API contract validation
+### Workflow 4 — Regression testing strategy
+
+1. Use `playwright-regression-testing` skill to design your regression approach.
+2. Organize tests into tiers:
+   - Tier 0: Smoke (< 2 min) — critical path, every commit
+   - Tier 1: Sanity (< 10 min) — core features, every PR
+   - Tier 2: Selective (< 30 min) — change-based, on merge
+   - Tier 3: Full (< 60 min) — complete regression, nightly/pre-release
+3. Implement test selection strategies (change-based, risk-based, time-budget).
+4. Set up CI/CD pipeline with GitHub Actions (smoke → selective → full).
+5. Add flaky test management (retry policies, quarantine, suite health metrics).
+
+### Workflow 5 — API contract validation
 
 1. Use API Tester Specialist agent.
 2. Cover:
